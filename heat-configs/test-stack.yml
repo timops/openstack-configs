@@ -1,0 +1,18 @@
+heat_template_version: 2013-05-23
+
+description: Test Template
+
+resources:
+  server1:
+    type: OS::Nova::Server
+    properties:
+      name: "Test server"
+      image: "ubuntu-precise-amd64"
+      flavor: "m1.small"
+      networks:
+      - network: "demo-net"
+
+outputs:
+  server1_private_ip:
+    description: IP address of the server in the private network
+    value: { get_attr: [ server1, first_address ] }
